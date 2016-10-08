@@ -1,3 +1,5 @@
+package projobiekt_hotel;
+
 public class User {
 	
 	public User(String mail, String hash, UserRole role) {

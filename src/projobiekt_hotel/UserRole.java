@@ -1,3 +1,4 @@
+package projobiekt_hotel;
 
 public enum UserRole {
 	GUEST, EMPLOYEE, MANAGER;
