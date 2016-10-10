@@ -39,5 +39,5 @@ public class Hotel {
     
     
     private  ArrayList<Room> rooms;
-    private ArrayList<Employee> employees;
+    private ArrayList<User> users;
 }
