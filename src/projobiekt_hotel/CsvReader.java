@@ -17,7 +17,9 @@ public class CsvReader {
 	public ArrayList<User> readUsersList(String filename)
 	{
 		ArrayList<User> users = new ArrayList<User>();
-		try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+		BufferedReader reader = null;
+		try {
+			reader = new BufferedReader(new FileReader(filename));
 			
 			String line;
 			while( (line = reader.readLine()) != null) {
@@ -29,6 +31,14 @@ public class CsvReader {
 			e.printStackTrace();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
+		} finally {
+			if(reader != null) {
+				try {
+					reader.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 		
 		return users;
