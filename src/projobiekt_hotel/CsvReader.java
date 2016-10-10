@@ -23,14 +23,16 @@ public class CsvReader {
 			
 			String line;
 			while( (line = reader.readLine()) != null) {
-				User newUser = readUserLine(line);
-				users.add(newUser);
+				try {
+					User newUser = readUserLine(line);
+					users.add(newUser);
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+				}
 			}
 			
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
 		} finally {
 			if(reader != null) {
 				try {

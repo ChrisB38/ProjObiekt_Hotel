@@ -11,12 +11,17 @@ public class CsvReaderTests {
 	
 	@Test
 	public void testReadUsersList() throws Exception {
-		ArrayList<User> users;
-		
-		String testFile = new File(this.getClass().getResource("/resources/users.csv").getFile()).getAbsolutePath();
-//		String testFile = "/home/maciej/prog/java/Hotel/tests/users.csv";
+		String testFile = new File(this.getClass().getResource("/tests/resources/users.csv").getFile()).getAbsolutePath();
 		CsvReader reader = new CsvReader();
-		users = reader.readUsersList(testFile);
+		ArrayList<User> users = reader.readUsersList(testFile);
+		System.out.println("testReadUsers" + users.size());
+		User firstUser = users.get(0);
+		User secondUser = users.get(1);
+		
+		assertEquals("foo@bar.pl", firstUser.mailAddress());
+		assertEquals(UserRole.EMPLOYEE, firstUser.role());
+		assertEquals("a@b.com", secondUser.mailAddress());
+		assertEquals(UserRole.GUEST, secondUser.role());
 	}
 
 
