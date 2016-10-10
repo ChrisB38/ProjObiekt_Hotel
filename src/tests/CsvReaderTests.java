@@ -14,10 +14,12 @@ public class CsvReaderTests {
 		String testFile = new File(this.getClass().getResource("/tests/resources/users.csv").getFile()).getAbsolutePath();
 		CsvReader reader = new CsvReader();
 		ArrayList<User> users = reader.readUsersList(testFile);
-		System.out.println("testReadUsers" + users.size());
+		
+		assertEquals(2, users.size());
+		
 		User firstUser = users.get(0);
 		User secondUser = users.get(1);
-		
+
 		assertEquals("foo@bar.pl", firstUser.mailAddress());
 		assertEquals(UserRole.EMPLOYEE, firstUser.role());
 		assertEquals("a@b.com", secondUser.mailAddress());
