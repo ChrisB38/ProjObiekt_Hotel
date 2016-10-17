@@ -46,6 +46,9 @@ public class MainFrame extends javax.swing.JFrame {
         jCheckBoxManager = new javax.swing.JCheckBox();
         jCheckBoxEmployee = new javax.swing.JCheckBox();
         jCheckBoxGuest = new javax.swing.JCheckBox();
+        jPanelEmployeeVerification = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jTextFieldVerfiyStatus = new javax.swing.JTextField();
         jButtonSignIn = new javax.swing.JButton();
         jButtonLogIn = new javax.swing.JButton();
 
@@ -88,11 +91,11 @@ public class MainFrame extends javax.swing.JFrame {
         jPanelNameAreaLayout.setHorizontalGroup(
             jPanelNameAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelNameAreaLayout.createSequentialGroup()
-                .addGap(58, 58, 58)
+                .addGap(36, 36, 36)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanelNameAreaLayout.setVerticalGroup(
             jPanelNameAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,12 +110,27 @@ public class MainFrame extends javax.swing.JFrame {
         userTypeGroup.add(jCheckBoxManager);
         jCheckBoxManager.setText("Manager");
         jCheckBoxManager.setToolTipText("");
+        jCheckBoxManager.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jCheckBoxManagerItemStateChanged(evt);
+            }
+        });
 
         userTypeGroup.add(jCheckBoxEmployee);
         jCheckBoxEmployee.setText("Employee");
+        jCheckBoxEmployee.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jCheckBoxEmployeeItemStateChanged(evt);
+            }
+        });
 
         userTypeGroup.add(jCheckBoxGuest);
         jCheckBoxGuest.setText("Guest");
+        jCheckBoxGuest.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jCheckBoxGuestItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelUserTypeLayout = new javax.swing.GroupLayout(jPanelUserType);
         jPanelUserType.setLayout(jPanelUserTypeLayout);
@@ -125,7 +143,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(jCheckBoxEmployee)
                 .addGap(18, 18, 18)
                 .addComponent(jCheckBoxGuest)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanelUserTypeLayout.setVerticalGroup(
             jPanelUserTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,35 +156,61 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
+        jLabel4.setText("Verfication password");
+
+        javax.swing.GroupLayout jPanelEmployeeVerificationLayout = new javax.swing.GroupLayout(jPanelEmployeeVerification);
+        jPanelEmployeeVerification.setLayout(jPanelEmployeeVerificationLayout);
+        jPanelEmployeeVerificationLayout.setHorizontalGroup(
+            jPanelEmployeeVerificationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelEmployeeVerificationLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
+                .addComponent(jTextFieldVerfiyStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(53, Short.MAX_VALUE))
+        );
+        jPanelEmployeeVerificationLayout.setVerticalGroup(
+            jPanelEmployeeVerificationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelEmployeeVerificationLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelEmployeeVerificationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jTextFieldVerfiyStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(27, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanelLoginLayout = new javax.swing.GroupLayout(jPanelLogin);
         jPanelLogin.setLayout(jPanelLoginLayout);
         jPanelLoginLayout.setHorizontalGroup(
             jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLoginLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanelUserType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60))
             .addGroup(jPanelLoginLayout.createSequentialGroup()
                 .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelLoginLayout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addComponent(jPanelNameArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanelLoginLayout.createSequentialGroup()
                             .addComponent(jLabel2)
                             .addGap(18, 18, 18)
                             .addComponent(jTextFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelLoginLayout.createSequentialGroup()
-                            .addGap(132, 132, 132)
+                            .addGap(50, 50, 50)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGap(18, 18, 18)
                             .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanelLoginLayout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(jPanelUserType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(24, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLoginLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonCancel)
-                .addGap(26, 26, 26)
-                .addComponent(jButtonConfirm)
-                .addGap(93, 93, 93))
+                        .addGap(252, 252, 252)
+                        .addComponent(jButtonCancel)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonConfirm))
+                    .addGroup(jPanelLoginLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanelEmployeeVerification, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelLoginLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jPanelNameArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         jPanelLoginLayout.setVerticalGroup(
             jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,13 +225,15 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelUserType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelEmployeeVerification, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCancel)
                     .addComponent(jButtonConfirm))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
         );
 
         jButtonSignIn.setText("Sign in");
@@ -219,9 +265,9 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButtonLogIn))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
+                        .addGap(33, 33, 33)
                         .addComponent(jPanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,9 +277,9 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(jButtonCheckRooms)
                     .addComponent(jButtonSignIn)
                     .addComponent(jButtonLogIn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jPanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();
@@ -246,6 +292,7 @@ public class MainFrame extends javax.swing.JFrame {
         this.jPanelUserType.setVisible(true);
         this.jButtonLogIn.setVisible(false);
         this.jButtonSignIn.setVisible(false);
+        this.jPanelEmployeeVerification.setVisible(false);
         this.signinMode = true;
     }//GEN-LAST:event_jButtonSignInMouseClicked
 
@@ -256,6 +303,7 @@ public class MainFrame extends javax.swing.JFrame {
         this.jPanelUserType.setVisible(false);
         this.jButtonLogIn.setVisible(false);
         this.jButtonSignIn.setVisible(false);
+        this.jPanelEmployeeVerification.setVisible(false);
         this.signinMode = true;
     }//GEN-LAST:event_jButtonLogInMouseClicked
 
@@ -270,19 +318,43 @@ public class MainFrame extends javax.swing.JFrame {
         this.jPanelLogin.setVisible(false);
         this.jButtonLogIn.setVisible(true);
         this.jButtonSignIn.setVisible(true);
+        this.userTypeGroup.clearSelection();
         this.signinMode = false;
     }//GEN-LAST:event_jButtonCancelMouseClicked
 
     private void jButtonConfirmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonConfirmMouseClicked
         // TODO add your handling code here:
-        this.jPanelLogin.setVisible(false);
+        this.jPanelLogin.setVisible(false);    
         if(this.signinMode) {
-            
+            this.jPanelEmployeeVerification.setVisible(false);
         }
         else {
             
         }
     }//GEN-LAST:event_jButtonConfirmMouseClicked
+
+    private void jCheckBoxManagerItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBoxManagerItemStateChanged
+        // TODO add your handling code here:
+        if(evt.getStateChange() == 1) {
+            this.jPanelEmployeeVerification.setVisible(true);
+        } 
+         
+    }//GEN-LAST:event_jCheckBoxManagerItemStateChanged
+
+    private void jCheckBoxEmployeeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBoxEmployeeItemStateChanged
+        // TODO add your handling code here:
+        if(evt.getStateChange() == 1) {
+            this.jPanelEmployeeVerification.setVisible(true);
+        } 
+    }//GEN-LAST:event_jCheckBoxEmployeeItemStateChanged
+
+    private void jCheckBoxGuestItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBoxGuestItemStateChanged
+        // TODO add your handling code here:
+        if(evt.getStateChange() == 1) {
+            this.jPanelEmployeeVerification.setVisible(false);
+        }
+        
+    }//GEN-LAST:event_jCheckBoxGuestItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -331,12 +403,15 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanelEmployeeVerification;
     private javax.swing.JPanel jPanelLogin;
     private javax.swing.JPanel jPanelNameArea;
     private javax.swing.JPanel jPanelUserType;
     private javax.swing.JTextField jTextFieldEmail;
     private javax.swing.JTextField jTextFieldName;
     private javax.swing.JTextField jTextFieldPassword;
+    private javax.swing.JTextField jTextFieldVerfiyStatus;
     private javax.swing.ButtonGroup userTypeGroup;
     // End of variables declaration//GEN-END:variables
 }
