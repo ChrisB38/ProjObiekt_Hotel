@@ -21,8 +21,10 @@ public class CsvReaderTests {
 		User secondUser = users.get(1);
 
 		assertEquals("foo@bar.pl", firstUser.mailAddress());
+		assertEquals("Jan Kowalski", firstUser.name());
 		assertEquals(UserRole.EMPLOYEE, firstUser.role());
 		assertEquals("a@b.com", secondUser.mailAddress());
+		assertEquals("Anna Nowak", secondUser.name());
 		assertEquals(UserRole.GUEST, secondUser.role());
 	}
 
@@ -30,11 +32,12 @@ public class CsvReaderTests {
 	@Test
 	public void testReadUserLine() throws Exception{
 		CsvReader reader = new CsvReader();
-		String line = "foo@bar.pl,900150983cd24fb0d6963f7d28e17f72,employee";
+		String line = "foo@bar.pl,900150983cd24fb0d6963f7d28e17f72,Stefan Batory,employee";
 		User user = reader.readUserLine(line);
 		
 		assertEquals("foo@bar.pl", user.mailAddress());
 		assertEquals("900150983cd24fb0d6963f7d28e17f72", user.passwordHash());
+		assertEquals("Stefan Batory", user.name());
 		assertEquals(UserRole.EMPLOYEE, user.role());
 	}
 	

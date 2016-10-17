@@ -49,15 +49,16 @@ public class CsvReader {
 	public User readUserLine(String line) throws Exception
 	{
 		String[] elements = line.split(separator);
-		if(elements.length != 3){
+		if(elements.length != 4){
 			throw new Exception("wrong line in csv file");
 		}
 		
 		String mailAddress = elements[0];
 		String passwordHash = elements[1];
-		UserRole userRole = UserRole.fromString(elements[2]);
+		String name = elements[2];
+		UserRole userRole = UserRole.fromString(elements[3]);
 		
-		return new User(mailAddress, passwordHash, userRole);
+		return new User(mailAddress, passwordHash, name, userRole);
 	}
 
 }

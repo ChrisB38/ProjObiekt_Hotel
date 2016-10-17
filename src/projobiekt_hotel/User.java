@@ -2,9 +2,10 @@ package projobiekt_hotel;
 
 public class User {
 	
-	public User(String mail, String hash, UserRole role) {
+	public User(String mail, String hash, String name, UserRole role) {
 		this.mail = mail;
 		this.hash = hash;
+		this.name = name;
 		this.role = role;
 	}
 
@@ -18,6 +19,11 @@ public class User {
 		return hash;
 	}
 	
+	public String name()
+	{
+		return name;
+	}
+	
 	public UserRole role()
 	{
 		return role;
@@ -26,6 +32,7 @@ public class User {
 
 	private String mail;
 	private String hash;
+	private String name;
 	private UserRole role;
 	
 }
