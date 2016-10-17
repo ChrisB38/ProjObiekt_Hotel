@@ -31,13 +31,6 @@ public class Hotel {
     public void AddEmployee() {
         
     }
-    
-    public void Login(String email,String password) {
-        
-    }
-    
-    
-    
+       
     private  ArrayList<Room> rooms;
-    private ArrayList<User> users;
 }
