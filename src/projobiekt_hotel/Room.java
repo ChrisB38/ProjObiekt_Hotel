@@ -20,6 +20,54 @@ public class Room {
         this.hasGoodWindowView = hasGoodWindowView;
     }
     
+    public long number(){
+    	return roomNumber;
+    }
+    
+    public int people() {
+    	return pepoleInRoom;
+    }
+    
+    public long price(){
+    	return reservationPrice;
+    }
+    
+    public boolean hasBath(){
+    	return hasBath;
+    }
+    
+    public boolean hasKitchen(){
+    	return hasKitchen;
+    }
+    
+    public boolean hasGoodWindowView(){
+    	return hasGoodWindowView;
+    }
+    
+    void setNumber(long number){
+    	this.roomNumber = number;
+    }
+    
+    void setNumberOfPeople(int peopleInRoom){
+    	this.pepoleInRoom = peopleInRoom;
+    }
+    
+    void setPrice(long price){
+    	this.reservationPrice = price;
+    }
+    
+    void setBath(boolean hasBath){
+    	this.hasBath = hasBath;
+    }
+    
+    void setKitchen(boolean hasKitchen){
+    	this.hasKitchen = hasKitchen;
+    }
+    
+    void setGoodWindowView(boolean hasGoodWindowView){
+    	this.hasGoodWindowView = hasGoodWindowView;
+    }
+    
     private long roomNumber;
     private int pepoleInRoom;
     private long reservationPrice;
