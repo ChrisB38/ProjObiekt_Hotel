@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 import projobiekt_hotel.*;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Calendar;
+
 import org.junit.Test;
 
 
@@ -27,7 +29,6 @@ public class CsvReaderTests {
 		assertEquals("Anna Nowak", secondUser.name());
 		assertEquals(UserRole.GUEST, secondUser.role());
 	}
-
 
 	@Test
 	public void testReadUserLine() throws Exception{
@@ -102,6 +103,57 @@ public class CsvReaderTests {
 			assertEquals("wrong line in csv file", e.getMessage());
 		}
 				
+	}
+	
+	@Test
+	public void testReadReservationsList() throws Exception {
+		String testFile = new File(this.getClass().getResource("/tests/resources/reservations.csv").getFile()).getAbsolutePath();
+		CsvReader reader = new CsvReader();
+		ArrayList<Reservation> reservations = reader.readReservationsList(testFile);
+		
+		assertEquals(2, reservations.size());
+		
+		Reservation firstReservation = reservations.get(0);
+		Reservation secondReservation = reservations.get(1);
+		
+		assertEquals(5, firstReservation.roomNumber());
+		assertEquals(2016, firstReservation.startDate().get(Calendar.YEAR));
+		assertEquals(2014, secondReservation.endDate().get(Calendar.YEAR));
+		assertEquals("jan@kowalski.pl", firstReservation.clientMail());
+		assertEquals("pracownik@hotel.com", secondReservation.reservingUserMail());
+		assertEquals(14, secondReservation.roomNumber());
+	}
+	
+	@Test
+	public void testReadReservationLine() throws Exception {
+		CsvReader reader = new CsvReader();
+		String line = "11,11-08-2016,18-08-2016,a@b.com,foo@bar.com";
+		Reservation reservation = reader.readReservationLine(line);
+		
+		assertEquals(11, reservation.roomNumber());
+		
+		assertEquals(11, reservation.startDate().get(Calendar.DAY_OF_MONTH));
+		assertEquals(8-1, reservation.startDate().get(Calendar.MONTH));
+		assertEquals(2016, reservation.startDate().get(Calendar.YEAR));
+		
+		assertEquals(18, reservation.endDate().get(Calendar.DAY_OF_MONTH));
+		assertEquals(8-1, reservation.endDate().get(Calendar.MONTH));
+		assertEquals(2016, reservation.endDate().get(Calendar.YEAR));
+		
+		assertEquals("a@b.com", reservation.reservingUserMail());
+		assertEquals("foo@bar.com", reservation.clientMail());
+	}
+	
+	@Test
+	public void testMalformedReservationLine() {
+		CsvReader reader = new CsvReader();
+		String wrongLine = "22,01-03-2015,04-03-2015";
+		try {
+			reader.readRoomLine(wrongLine);
+			fail("Exception not thrown");
+		} catch(Exception e) {
+			assertEquals("wrong line in csv file", e.getMessage());
+		}		
 	}
 
 }
