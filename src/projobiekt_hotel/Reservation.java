@@ -1,10 +1,10 @@
 package projobiekt_hotel;
 
-import java.util.Date;
+import java.util.Calendar;
 
 public class Reservation {
     
-    public Reservation(int reservedRoomNumber, Date reservationStart, Date reservationEnd,
+    public Reservation(int reservedRoomNumber, Calendar reservationStart, Calendar reservationEnd,
     		String reservingUserMail, String clientMail) {
         this.reservedRoomNumber = reservedRoomNumber;
         this.reservationStart = reservationStart;
@@ -17,19 +17,27 @@ public class Reservation {
     	return reservedRoomNumber;
     }
     
-    public Date startDate(){
+    public Calendar startDate(){
     	return reservationStart;
     }
     
-    public Date endDate(){
+    public Calendar endDate(){
     	return reservationEnd;
     }
     
-    public void setStartDate(Date reservationStart){
+    public String reservingUserMail(){
+    	return reservingUserMail;
+    }
+    
+    public String clientMail(){
+    	return clientMail;
+    }
+    
+    public void setStartDate(Calendar reservationStart){
     	this.reservationStart = reservationStart;
     }
     
-    public void setEndDate(Date reservationEnd){
+    public void setEndDate(Calendar reservationEnd){
     	this.reservationEnd = reservationEnd;
     }
     
@@ -42,8 +50,8 @@ public class Reservation {
 //    }
     
     private int reservedRoomNumber;
-    private Date reservationStart;
-    private Date reservationEnd;
+    private Calendar reservationStart;
+    private Calendar reservationEnd;
     private String reservingUserMail;
     private String clientMail;
     
