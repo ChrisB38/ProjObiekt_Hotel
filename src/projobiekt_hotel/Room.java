@@ -11,7 +11,7 @@ package projobiekt_hotel;
  */
 public class Room {
     
-    Room(long roomNumber,int pepoleInRoom,long reservationPrice,boolean hasBath,boolean hasKitchen, boolean hasGoodWindowView) {
+    public Room(long roomNumber,int pepoleInRoom,long reservationPrice,boolean hasBath,boolean hasKitchen, boolean hasGoodWindowView) {
         this.roomNumber = roomNumber;
         this.pepoleInRoom = pepoleInRoom;
         this.reservationPrice = reservationPrice;
