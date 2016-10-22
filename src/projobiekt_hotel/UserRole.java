@@ -11,4 +11,13 @@ public enum UserRole {
 		else
 			return GUEST;
 	}
+	
+	public static String toString(UserRole role){
+		if(role == MANAGER)
+			return "manager";
+		else if(role == EMPLOYEE)
+			return "employee";
+		else
+			return "guest";
+	}
 }
