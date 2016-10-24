@@ -392,6 +392,12 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.jPanelLogin.setVisible(false);    
         if(this.signinMode) {
+            try {
+                UsersManager.register(jTextFieldEmail.getText(), jTextFieldPassword.getText(),jTextFieldName.getText(),null);
+            }
+            catch(Exception ex) {
+                
+            }
             this.jPanelEmployeeVerification.setVisible(false);
             this.jPanelLogin.setVisible(false);
             this.jButtonLogIn.setVisible(true);
