@@ -31,7 +31,6 @@ public class MainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         userTypeGroup = new javax.swing.ButtonGroup();
-        jButtonCheckRooms = new javax.swing.JButton();
         jPanelLogin = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTextFieldEmail = new javax.swing.JTextField();
@@ -51,6 +50,9 @@ public class MainFrame extends javax.swing.JFrame {
         jTextFieldVerfiyStatus = new javax.swing.JTextField();
         jButtonSignIn = new javax.swing.JButton();
         jButtonLogIn = new javax.swing.JButton();
+        jButtonCheckRooms = new javax.swing.JButton();
+        jPanelLoggedInButtons = new javax.swing.JPanel();
+        jButtonLogOut = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hotel main window");
@@ -59,10 +61,6 @@ public class MainFrame extends javax.swing.JFrame {
                 formWindowOpened(evt);
             }
         });
-
-        jButtonCheckRooms.setText("Check rooms");
-        jButtonCheckRooms.setToolTipText("");
-        jButtonCheckRooms.setActionCommand("Check room avalabity");
 
         jLabel1.setText("Email");
         jLabel1.setToolTipText("");
@@ -132,30 +130,6 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanelUserTypeLayout = new javax.swing.GroupLayout(jPanelUserType);
-        jPanelUserType.setLayout(jPanelUserTypeLayout);
-        jPanelUserTypeLayout.setHorizontalGroup(
-            jPanelUserTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelUserTypeLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(jCheckBoxManager)
-                .addGap(18, 18, 18)
-                .addComponent(jCheckBoxEmployee)
-                .addGap(18, 18, 18)
-                .addComponent(jCheckBoxGuest)
-                .addContainerGap(16, Short.MAX_VALUE))
-        );
-        jPanelUserTypeLayout.setVerticalGroup(
-            jPanelUserTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelUserTypeLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(jPanelUserTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBoxManager)
-                    .addComponent(jCheckBoxEmployee)
-                    .addComponent(jCheckBoxGuest))
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
-
         jLabel4.setText("Verfication password");
 
         javax.swing.GroupLayout jPanelEmployeeVerificationLayout = new javax.swing.GroupLayout(jPanelEmployeeVerification);
@@ -166,8 +140,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
-                .addComponent(jTextFieldVerfiyStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addComponent(jTextFieldVerfiyStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelEmployeeVerificationLayout.setVerticalGroup(
             jPanelEmployeeVerificationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,57 +153,86 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
+        javax.swing.GroupLayout jPanelUserTypeLayout = new javax.swing.GroupLayout(jPanelUserType);
+        jPanelUserType.setLayout(jPanelUserTypeLayout);
+        jPanelUserTypeLayout.setHorizontalGroup(
+            jPanelUserTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelUserTypeLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jCheckBoxManager)
+                .addGap(18, 18, 18)
+                .addComponent(jCheckBoxEmployee)
+                .addGap(18, 18, 18)
+                .addComponent(jCheckBoxGuest)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanelUserTypeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanelEmployeeVerification, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanelUserTypeLayout.setVerticalGroup(
+            jPanelUserTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelUserTypeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelUserTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCheckBoxManager)
+                    .addComponent(jCheckBoxEmployee)
+                    .addComponent(jCheckBoxGuest))
+                .addGap(18, 18, 18)
+                .addComponent(jPanelEmployeeVerification, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanelLoginLayout = new javax.swing.GroupLayout(jPanelLogin);
         jPanelLogin.setLayout(jPanelLoginLayout);
         jPanelLoginLayout.setHorizontalGroup(
             jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLoginLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanelUserType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60))
             .addGroup(jPanelLoginLayout.createSequentialGroup()
                 .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanelLoginLayout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addGap(18, 18, 18)
-                            .addComponent(jTextFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelLoginLayout.createSequentialGroup()
-                            .addGap(50, 50, 50)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLoginLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel2))
+                        .addGap(8, 8, 8)
+                        .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelLoginLayout.createSequentialGroup()
+                                .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanelLoginLayout.createSequentialGroup()
+                                .addComponent(jTextFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanelLoginLayout.createSequentialGroup()
-                        .addGap(252, 252, 252)
+                        .addGap(191, 191, 191)
                         .addComponent(jButtonCancel)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonConfirm))
+                        .addGap(31, 31, 31)
+                        .addComponent(jButtonConfirm)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanelLoginLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanelEmployeeVerification, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelLoginLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jPanelNameArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(52, Short.MAX_VALUE))
+                        .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelLoginLayout.createSequentialGroup()
+                                .addComponent(jPanelNameArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jPanelUserType, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
         );
         jPanelLoginLayout.setVerticalGroup(
             jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLoginLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(28, 28, 28)
                 .addComponent(jPanelNameArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
+                .addGap(18, 18, 18)
                 .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jPanelUserType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanelEmployeeVerification, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCancel)
                     .addComponent(jButtonConfirm))
@@ -251,35 +254,63 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        jButtonCheckRooms.setText("Check rooms");
+        jButtonCheckRooms.setToolTipText("");
+        jButtonCheckRooms.setActionCommand("Check room avalabity");
+
+        jButtonLogOut.setText("Log out");
+        jButtonLogOut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonLogOutMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelLoggedInButtonsLayout = new javax.swing.GroupLayout(jPanelLoggedInButtons);
+        jPanelLoggedInButtons.setLayout(jPanelLoggedInButtonsLayout);
+        jPanelLoggedInButtonsLayout.setHorizontalGroup(
+            jPanelLoggedInButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelLoggedInButtonsLayout.createSequentialGroup()
+                .addComponent(jButtonLogOut)
+                .addGap(0, 270, Short.MAX_VALUE))
+        );
+        jPanelLoggedInButtonsLayout.setVerticalGroup(
+            jPanelLoggedInButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jButtonLogOut)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jButtonCheckRooms)
-                        .addGap(18, 18, 18)
+                        .addGap(39, 39, 39)
                         .addComponent(jButtonSignIn, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonLogIn))
+                        .addComponent(jButtonLogIn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonCheckRooms))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jPanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(jPanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jPanelLoggedInButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonCheckRooms)
-                    .addComponent(jButtonSignIn)
-                    .addComponent(jButtonLogIn))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonSignIn)
+                        .addComponent(jButtonLogIn))
+                    .addComponent(jButtonCheckRooms, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelLoggedInButtons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jPanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addComponent(jPanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pack();
@@ -304,12 +335,13 @@ public class MainFrame extends javax.swing.JFrame {
         this.jButtonLogIn.setVisible(false);
         this.jButtonSignIn.setVisible(false);
         this.jPanelEmployeeVerification.setVisible(false);
-        this.signinMode = true;
+        this.signinMode = false;
     }//GEN-LAST:event_jButtonLogInMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         this.jPanelLogin.setVisible(false);
+        this.jPanelLoggedInButtons.setVisible(false);
         this.signinMode = false;
     }//GEN-LAST:event_formWindowOpened
 
@@ -327,9 +359,13 @@ public class MainFrame extends javax.swing.JFrame {
         this.jPanelLogin.setVisible(false);    
         if(this.signinMode) {
             this.jPanelEmployeeVerification.setVisible(false);
+            this.jPanelLogin.setVisible(false);
+            this.jButtonLogIn.setVisible(true);
+            this.jButtonSignIn.setVisible(true);
+            this.userTypeGroup.clearSelection();
         }
         else {
-            
+            this.jPanelLoggedInButtons.setVisible(true);
         }
     }//GEN-LAST:event_jButtonConfirmMouseClicked
 
@@ -355,6 +391,13 @@ public class MainFrame extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jCheckBoxGuestItemStateChanged
+
+    private void jButtonLogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonLogOutMouseClicked
+        // TODO add your handling code here:
+        this.jPanelLoggedInButtons.setVisible(false);
+        this.jButtonLogIn.setVisible(true);
+        this.jButtonSignIn.setVisible(true);
+    }//GEN-LAST:event_jButtonLogOutMouseClicked
 
     /**
      * @param args the command line arguments
@@ -396,6 +439,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCheckRooms;
     private javax.swing.JButton jButtonConfirm;
     private javax.swing.JButton jButtonLogIn;
+    private javax.swing.JButton jButtonLogOut;
     private javax.swing.JButton jButtonSignIn;
     private javax.swing.JCheckBox jCheckBoxEmployee;
     private javax.swing.JCheckBox jCheckBoxGuest;
@@ -405,6 +449,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanelEmployeeVerification;
+    private javax.swing.JPanel jPanelLoggedInButtons;
     private javax.swing.JPanel jPanelLogin;
     private javax.swing.JPanel jPanelNameArea;
     private javax.swing.JPanel jPanelUserType;
