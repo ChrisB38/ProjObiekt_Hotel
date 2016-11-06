@@ -53,6 +53,12 @@ public class MainFrame extends javax.swing.JFrame {
         jButtonCheckRooms = new javax.swing.JButton();
         jPanelLoggedInButtons = new javax.swing.JPanel();
         jButtonLogOut = new javax.swing.JButton();
+        jButtonReservationAdd = new javax.swing.JButton();
+        jButtonReservationCancel = new javax.swing.JButton();
+        jButtonAddRoom = new javax.swing.JButton();
+        jButtonRemoveRoom = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jListCloudHolder = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hotel main window");
@@ -189,32 +195,30 @@ public class MainFrame extends javax.swing.JFrame {
             jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLoginLayout.createSequentialGroup()
                 .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLoginLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(8, 8, 8)
-                        .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelLoginLayout.createSequentialGroup()
-                                .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanelLoginLayout.createSequentialGroup()
-                                .addComponent(jTextFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(jPanelLoginLayout.createSequentialGroup()
-                        .addGap(191, 191, 191)
-                        .addComponent(jButtonCancel)
-                        .addGap(31, 31, 31)
-                        .addComponent(jButtonConfirm)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanelLoginLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelLoginLayout.createSequentialGroup()
                                 .addComponent(jPanelNameArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jPanelUserType, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(0, 27, Short.MAX_VALUE))
+                            .addComponent(jPanelUserType, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanelLoginLayout.createSequentialGroup()
+                        .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelLoginLayout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2))
+                                .addGap(8, 8, 8)
+                                .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanelLoginLayout.createSequentialGroup()
+                                .addGap(191, 191, 191)
+                                .addComponent(jButtonCancel)
+                                .addGap(31, 31, 31)
+                                .addComponent(jButtonConfirm)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanelLoginLayout.setVerticalGroup(
@@ -232,7 +236,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(jTextFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanelUserType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCancel)
                     .addComponent(jButtonConfirm))
@@ -265,18 +269,41 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        jButtonReservationAdd.setText("Reserve room");
+
+        jButtonReservationCancel.setText("Cancel reservaton");
+
+        jButtonAddRoom.setText("Add room");
+
+        jButtonRemoveRoom.setText("Remove room");
+
         javax.swing.GroupLayout jPanelLoggedInButtonsLayout = new javax.swing.GroupLayout(jPanelLoggedInButtons);
         jPanelLoggedInButtons.setLayout(jPanelLoggedInButtonsLayout);
         jPanelLoggedInButtonsLayout.setHorizontalGroup(
             jPanelLoggedInButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLoggedInButtonsLayout.createSequentialGroup()
                 .addComponent(jButtonLogOut)
-                .addGap(0, 270, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonReservationAdd)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonReservationCancel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonAddRoom)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonRemoveRoom)
+                .addGap(0, 48, Short.MAX_VALUE))
         );
         jPanelLoggedInButtonsLayout.setVerticalGroup(
             jPanelLoggedInButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButtonLogOut)
+            .addGroup(jPanelLoggedInButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jButtonLogOut)
+                .addComponent(jButtonReservationAdd)
+                .addComponent(jButtonReservationCancel)
+                .addComponent(jButtonAddRoom)
+                .addComponent(jButtonRemoveRoom))
         );
+
+        jScrollPane1.setViewportView(jListCloudHolder);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -293,10 +320,12 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(jButtonCheckRooms))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jPanelLoggedInButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelLoggedInButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,8 +337,13 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(jButtonLogIn))
                     .addComponent(jButtonCheckRooms, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelLoggedInButtons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(jPanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
@@ -435,11 +469,15 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAddRoom;
     private javax.swing.JButton jButtonCancel;
     private javax.swing.JButton jButtonCheckRooms;
     private javax.swing.JButton jButtonConfirm;
     private javax.swing.JButton jButtonLogIn;
     private javax.swing.JButton jButtonLogOut;
+    private javax.swing.JButton jButtonRemoveRoom;
+    private javax.swing.JButton jButtonReservationAdd;
+    private javax.swing.JButton jButtonReservationCancel;
     private javax.swing.JButton jButtonSignIn;
     private javax.swing.JCheckBox jCheckBoxEmployee;
     private javax.swing.JCheckBox jCheckBoxGuest;
@@ -448,11 +486,13 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JList<String> jListCloudHolder;
     private javax.swing.JPanel jPanelEmployeeVerification;
     private javax.swing.JPanel jPanelLoggedInButtons;
     private javax.swing.JPanel jPanelLogin;
     private javax.swing.JPanel jPanelNameArea;
     private javax.swing.JPanel jPanelUserType;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextFieldEmail;
     private javax.swing.JTextField jTextFieldName;
     private javax.swing.JTextField jTextFieldPassword;
