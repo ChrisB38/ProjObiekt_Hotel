@@ -5,6 +5,8 @@
  */
 package projobiekt_hotel;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Bieron
@@ -58,7 +60,11 @@ public class MainFrame extends javax.swing.JFrame {
         jButtonAddRoom = new javax.swing.JButton();
         jButtonRemoveRoom = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jListCloudHolder = new javax.swing.JList<>();
+        jListCloudHolder = new javax.swing.JList<String>();
+        jPanelListType = new javax.swing.JPanel();
+        jToggleButtonRooms = new javax.swing.JToggleButton();
+        jToggleButtonUsers = new javax.swing.JToggleButton();
+        jToggleButtonReservationList = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hotel main window");
@@ -305,6 +311,36 @@ public class MainFrame extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(jListCloudHolder);
 
+        jToggleButtonRooms.setText("Rooms");
+
+        jToggleButtonUsers.setText("Users");
+
+        jToggleButtonReservationList.setText("Reservations");
+
+        javax.swing.GroupLayout jPanelListTypeLayout = new javax.swing.GroupLayout(jPanelListType);
+        jPanelListType.setLayout(jPanelListTypeLayout);
+        jPanelListTypeLayout.setHorizontalGroup(
+            jPanelListTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelListTypeLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jToggleButtonReservationList)
+                .addGap(18, 18, 18)
+                .addComponent(jToggleButtonRooms)
+                .addGap(30, 30, 30)
+                .addComponent(jToggleButtonUsers)
+                .addContainerGap(55, Short.MAX_VALUE))
+        );
+        jPanelListTypeLayout.setVerticalGroup(
+            jPanelListTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelListTypeLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanelListTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jToggleButtonRooms)
+                    .addComponent(jToggleButtonUsers)
+                    .addComponent(jToggleButtonReservationList))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -324,7 +360,10 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanelLoggedInButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(85, 85, 85)
+                        .addComponent(jPanelListType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -343,8 +382,10 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(jPanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(46, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanelListType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         pack();
@@ -376,6 +417,7 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.jPanelLogin.setVisible(false);
         this.jPanelLoggedInButtons.setVisible(false);
+        this.jPanelListType.setVisible(false);
         this.signinMode = false;
     }//GEN-LAST:event_formWindowOpened
 
@@ -393,10 +435,11 @@ public class MainFrame extends javax.swing.JFrame {
         this.jPanelLogin.setVisible(false);    
         if(this.signinMode) {
             try {
+                String userType = userTypeGroup.getSelection().getSelectedObjects()[0].toString();
                 UsersManager.register(jTextFieldEmail.getText(), jTextFieldPassword.getText(),jTextFieldName.getText(),null);
             }
             catch(Exception ex) {
-                
+                JOptionPane.showMessageDialog(rootPane, ex, null,JOptionPane.ERROR_MESSAGE);
             }
             this.jPanelEmployeeVerification.setVisible(false);
             this.jPanelLogin.setVisible(false);
@@ -494,6 +537,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JList<String> jListCloudHolder;
     private javax.swing.JPanel jPanelEmployeeVerification;
+    private javax.swing.JPanel jPanelListType;
     private javax.swing.JPanel jPanelLoggedInButtons;
     private javax.swing.JPanel jPanelLogin;
     private javax.swing.JPanel jPanelNameArea;
@@ -503,6 +547,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldName;
     private javax.swing.JTextField jTextFieldPassword;
     private javax.swing.JTextField jTextFieldVerfiyStatus;
+    private javax.swing.JToggleButton jToggleButtonReservationList;
+    private javax.swing.JToggleButton jToggleButtonRooms;
+    private javax.swing.JToggleButton jToggleButtonUsers;
     private javax.swing.ButtonGroup userTypeGroup;
     // End of variables declaration//GEN-END:variables
 }
