@@ -435,8 +435,17 @@ public class MainFrame extends javax.swing.JFrame {
         this.jPanelLogin.setVisible(false);    
         if(this.signinMode) {
             try {
-                String userType = userTypeGroup.getSelection().getSelectedObjects()[0].toString();
-                UsersManager.register(jTextFieldEmail.getText(), jTextFieldPassword.getText(),jTextFieldName.getText(),null);
+                String userType = "";
+                if(this.jCheckBoxEmployee.isSelected()) {
+                    userType = UserRole.EMPLOYEE.toString();
+                }
+                else if(this.jCheckBoxGuest.isSelected()) {
+                    userType = UserRole.GUEST.toString();
+                }
+                else if(this.jCheckBoxManager.isSelected()) {
+                    userType = UserRole.MANAGER.toString();
+                }
+                boolean result = UsersManager.register(jTextFieldEmail.getText(), jTextFieldPassword.getText(),jTextFieldName.getText(),userType);
             }
             catch(Exception ex) {
                 JOptionPane.showMessageDialog(rootPane, ex, null,JOptionPane.ERROR_MESSAGE);
