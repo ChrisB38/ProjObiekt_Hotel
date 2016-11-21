@@ -13,8 +13,9 @@ import javax.swing.JOptionPane;
  */
 public class MainFrame extends javax.swing.JFrame {
 
-    private static Hotel HotelObj = new Hotel();
+    private static ListsCloud lists = ListsCloud.getInstance();
     private boolean signinMode;
+    
     
     /**
      * Creates new form MainFrame
@@ -446,6 +447,9 @@ public class MainFrame extends javax.swing.JFrame {
                     userType = UserRole.MANAGER.toString();
                 }
                 boolean result = UsersManager.register(jTextFieldEmail.getText(), jTextFieldPassword.getText(),jTextFieldName.getText(),userType);
+                System.out.println(" " + result );
+              
+                lists.saveLists();
             }
             catch(Exception ex) {
                 JOptionPane.showMessageDialog(rootPane, ex, null,JOptionPane.ERROR_MESSAGE);
