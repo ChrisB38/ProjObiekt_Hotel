@@ -36,7 +36,7 @@ public class UsersManager {
 	}
 	
 	public static boolean correctSecretPassword(String password) throws Exception {
-		return hash(password).equals("e919c49d5f0cd737285367810a3394d0");
+		return hash(password).equals("ed86f1f642b7d5ea479523c8e879be29");
 	}
 	
 
@@ -44,7 +44,7 @@ public class UsersManager {
 		ListsCloud cloud = ListsCloud.getInstance();
 		ArrayList<User> users = cloud.users();
 		for (User user : users) {
-			if(user.mailAddress() == mail)
+			if(user.mailAddress().equals(mail))
 				return user;
 		}
 		throw new Exception("user not found");

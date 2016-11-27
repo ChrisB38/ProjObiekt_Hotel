@@ -5,6 +5,12 @@
  */
 package projobiekt_hotel;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -38,7 +44,6 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jTextFieldEmail = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextFieldPassword = new javax.swing.JTextField();
         jButtonConfirm = new javax.swing.JButton();
         jButtonCancel = new javax.swing.JButton();
         jPanelNameArea = new javax.swing.JPanel();
@@ -50,7 +55,8 @@ public class MainFrame extends javax.swing.JFrame {
         jCheckBoxGuest = new javax.swing.JCheckBox();
         jPanelEmployeeVerification = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jTextFieldVerfiyStatus = new javax.swing.JTextField();
+        jPasswordVerifyField = new javax.swing.JPasswordField();
+        jPasswordField = new javax.swing.JPasswordField();
         jButtonSignIn = new javax.swing.JButton();
         jButtonLogIn = new javax.swing.JButton();
         jButtonCheckRooms = new javax.swing.JButton();
@@ -60,12 +66,20 @@ public class MainFrame extends javax.swing.JFrame {
         jButtonReservationCancel = new javax.swing.JButton();
         jButtonAddRoom = new javax.swing.JButton();
         jButtonRemoveRoom = new javax.swing.JButton();
+        jButtonRemoveUser = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jListCloudHolder = new javax.swing.JList<String>();
+        jListCloudHolder = new javax.swing.JList<>();
         jPanelListType = new javax.swing.JPanel();
         jToggleButtonRooms = new javax.swing.JToggleButton();
         jToggleButtonUsers = new javax.swing.JToggleButton();
         jToggleButtonReservationList = new javax.swing.JToggleButton();
+        jPanelCheck = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jXDatePickerCheckFrom = new org.jdesktop.swingx.JXDatePicker();
+        jLabel6 = new javax.swing.JLabel();
+        jXDatePickerCheckTo = new org.jdesktop.swingx.JXDatePicker();
+        jButtonCheck = new javax.swing.JButton();
+        jButtonCancelCheck = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hotel main window");
@@ -145,6 +159,8 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel4.setText("Verfication password");
 
+        jPasswordVerifyField.setToolTipText("");
+
         javax.swing.GroupLayout jPanelEmployeeVerificationLayout = new javax.swing.GroupLayout(jPanelEmployeeVerification);
         jPanelEmployeeVerification.setLayout(jPanelEmployeeVerificationLayout);
         jPanelEmployeeVerificationLayout.setHorizontalGroup(
@@ -152,8 +168,8 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(jPanelEmployeeVerificationLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addComponent(jTextFieldVerfiyStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPasswordVerifyField, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelEmployeeVerificationLayout.setVerticalGroup(
@@ -162,8 +178,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanelEmployeeVerificationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextFieldVerfiyStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                    .addComponent(jPasswordVerifyField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelUserTypeLayout = new javax.swing.GroupLayout(jPanelUserType);
@@ -196,6 +212,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPasswordField.setToolTipText("");
+
         javax.swing.GroupLayout jPanelLoginLayout = new javax.swing.GroupLayout(jPanelLogin);
         jPanelLogin.setLayout(jPanelLoginLayout);
         jPanelLoginLayout.setHorizontalGroup(
@@ -216,10 +234,13 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel2))
-                                .addGap(8, 8, 8)
-                                .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanelLoginLayout.createSequentialGroup()
+                                        .addGap(8, 8, 8)
+                                        .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanelLoginLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jPasswordField))))
                             .addGroup(jPanelLoginLayout.createSequentialGroup()
                                 .addGap(191, 191, 191)
                                 .addComponent(jButtonCancel)
@@ -238,9 +259,9 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
-                    .addComponent(jTextFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanelUserType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
@@ -268,6 +289,11 @@ public class MainFrame extends javax.swing.JFrame {
         jButtonCheckRooms.setText("Check rooms");
         jButtonCheckRooms.setToolTipText("");
         jButtonCheckRooms.setActionCommand("Check room avalabity");
+        jButtonCheckRooms.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonCheckRoomsMouseClicked(evt);
+            }
+        });
 
         jButtonLogOut.setText("Log out");
         jButtonLogOut.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -284,6 +310,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         jButtonRemoveRoom.setText("Remove room");
 
+        jButtonRemoveUser.setText("Remove user");
+        jButtonRemoveUser.setToolTipText("");
+
         javax.swing.GroupLayout jPanelLoggedInButtonsLayout = new javax.swing.GroupLayout(jPanelLoggedInButtons);
         jPanelLoggedInButtons.setLayout(jPanelLoggedInButtonsLayout);
         jPanelLoggedInButtonsLayout.setHorizontalGroup(
@@ -298,7 +327,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(jButtonAddRoom)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonRemoveRoom)
-                .addGap(0, 48, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonRemoveUser)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanelLoggedInButtonsLayout.setVerticalGroup(
             jPanelLoggedInButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -307,7 +338,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(jButtonReservationAdd)
                 .addComponent(jButtonReservationCancel)
                 .addComponent(jButtonAddRoom)
-                .addComponent(jButtonRemoveRoom))
+                .addComponent(jButtonRemoveRoom)
+                .addComponent(jButtonRemoveUser))
         );
 
         jScrollPane1.setViewportView(jListCloudHolder);
@@ -342,6 +374,60 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jLabel5.setText("Avaliable from:");
+
+        jLabel6.setText("Avaliiable to:");
+
+        jButtonCheck.setText("Check");
+        jButtonCheck.setToolTipText("");
+        jButtonCheck.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonCheckMouseClicked(evt);
+            }
+        });
+
+        jButtonCancelCheck.setText("Cancel");
+
+        javax.swing.GroupLayout jPanelCheckLayout = new javax.swing.GroupLayout(jPanelCheck);
+        jPanelCheck.setLayout(jPanelCheckLayout);
+        jPanelCheckLayout.setHorizontalGroup(
+            jPanelCheckLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCheckLayout.createSequentialGroup()
+                .addGroup(jPanelCheckLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelCheckLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanelCheckLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelCheckLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jXDatePickerCheckFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jXDatePickerCheckTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanelCheckLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jButtonCheck)
+                        .addGap(38, 38, 38)
+                        .addComponent(jButtonCancelCheck)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanelCheckLayout.setVerticalGroup(
+            jPanelCheckLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCheckLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelCheckLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jXDatePickerCheckFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelCheckLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jXDatePickerCheckTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addGroup(jPanelCheckLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonCheck)
+                    .addComponent(jButtonCancelCheck))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -359,13 +445,15 @@ public class MainFrame extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jPanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelLoggedInButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(85, 85, 85)
-                        .addComponent(jPanelListType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(10, 10, 10)
+                        .addComponent(jPanelListType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanelCheck, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanelLoggedInButtons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -385,8 +473,10 @@ public class MainFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanelListType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(60, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanelListType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanelCheck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -419,6 +509,10 @@ public class MainFrame extends javax.swing.JFrame {
         this.jPanelLogin.setVisible(false);
         this.jPanelLoggedInButtons.setVisible(false);
         this.jPanelListType.setVisible(false);
+        this.jPanelCheck.setVisible(false);
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        this.jXDatePickerCheckFrom.setFormats(dateFormat);
+        this.jXDatePickerCheckTo.setFormats(dateFormat);
         this.signinMode = false;
     }//GEN-LAST:event_formWindowOpened
 
@@ -446,22 +540,68 @@ public class MainFrame extends javax.swing.JFrame {
                 else if(this.jCheckBoxManager.isSelected()) {
                     userType = UserRole.MANAGER.toString();
                 }
-                boolean result = UsersManager.register(jTextFieldEmail.getText(), jTextFieldPassword.getText(),jTextFieldName.getText(),userType);
-                System.out.println(" " + result );
-              
+                
+                if(userType.equals(UserRole.MANAGER.toString()) || userType.equals(UserRole.EMPLOYEE.toString())) {
+                    if(!UsersManager.correctSecretPassword(Arrays.toString(jPasswordVerifyField.getPassword()))) {
+                        JOptionPane.showMessageDialog(rootPane, "Invalid verification password", null,JOptionPane.INFORMATION_MESSAGE);
+                        this.jPanelLogin.setVisible(true); 
+                        return;
+                    } 
+                }                
+                boolean result = UsersManager.register(jTextFieldEmail.getText(), Arrays.toString(jPasswordField.getPassword()),jTextFieldName.getText(),userType);
+           
                 lists.saveLists();
             }
             catch(Exception ex) {
-                JOptionPane.showMessageDialog(rootPane, ex, null,JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage(), null,JOptionPane.ERROR_MESSAGE);            
             }
+            this.jTextFieldEmail.setText("");
+            this.jTextFieldName.setText("");
+            this.jPasswordField.setText("");
+            this.jPasswordVerifyField.setText("");
             this.jPanelEmployeeVerification.setVisible(false);
             this.jPanelLogin.setVisible(false);
             this.jButtonLogIn.setVisible(true);
             this.jButtonSignIn.setVisible(true);
             this.userTypeGroup.clearSelection();
         }
-        else {
-            this.jPanelLoggedInButtons.setVisible(true);
+        else {    
+            if (UsersManager.login(jTextFieldEmail.getText(), Arrays.toString(jPasswordField.getPassword()))) {
+                this.jPanelLoggedInButtons.setVisible(true);
+                try {
+                    User loggedUser = UsersManager.getUserByMail(jTextFieldEmail.getText());
+                    if(loggedUser.role() == UserRole.EMPLOYEE) {
+                        this.jButtonRemoveRoom.setVisible(false);
+                        this.jButtonAddRoom.setVisible(true);
+                        this.jButtonRemoveUser.setVisible(false);
+                    }
+                    else if(loggedUser.role() == UserRole.MANAGER) {
+                        this.jButtonRemoveRoom.setVisible(true);
+                        this.jButtonAddRoom.setVisible(true);
+                        this.jButtonRemoveUser.setVisible(true);
+                    }
+                    else {
+                        this.jButtonRemoveRoom.setVisible(false);
+                        this.jButtonAddRoom.setVisible(false);
+                        this.jButtonRemoveUser.setVisible(false);
+                    }
+                }
+                catch(Exception ex) {
+                    JOptionPane.showMessageDialog(rootPane, "Something went wrong. Terminating application", null,JOptionPane.ERROR_MESSAGE); 
+                    System.exit(1);
+                }
+            }
+            else {
+                JOptionPane.showMessageDialog(rootPane, "Invalid user creditianals", null,JOptionPane.INFORMATION_MESSAGE);
+                this.jButtonLogIn.setVisible(true);
+                this.jButtonSignIn.setVisible(true);
+            }
+            this.jPanelEmployeeVerification.setVisible(false);
+            this.jTextFieldEmail.setText("");
+            this.jPasswordField.setText("");
+            this.jPanelLogin.setVisible(false);
+            this.userTypeGroup.clearSelection();
+                 
         }
     }//GEN-LAST:event_jButtonConfirmMouseClicked
 
@@ -494,6 +634,44 @@ public class MainFrame extends javax.swing.JFrame {
         this.jButtonLogIn.setVisible(true);
         this.jButtonSignIn.setVisible(true);
     }//GEN-LAST:event_jButtonLogOutMouseClicked
+
+    private void jButtonCheckRoomsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCheckRoomsMouseClicked
+        // TODO add your handling code here:
+        this.jPanelListType.setVisible(true);
+        this.jToggleButtonReservationList.setVisible(false);
+        this.jToggleButtonUsers.setVisible(false);
+        this.jToggleButtonRooms.setSelected(true);
+        this.jPanelCheck.setVisible(true);
+    }//GEN-LAST:event_jButtonCheckRoomsMouseClicked
+
+    private void jButtonCheckMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCheckMouseClicked
+        // TODO add your handling code here:
+        Date fromDate = this.jXDatePickerCheckFrom.getDate();
+        Date toDate = this.jXDatePickerCheckTo.getDate();
+        if ( fromDate == null || toDate == null ) {
+            
+        }
+        ArrayList<Reservation> reservations = lists.reservations();
+        Calendar cal2 = Calendar.getInstance();
+        Calendar cal4 = Calendar.getInstance();
+        cal2.setTime(fromDate);
+        cal4.setTime(toDate);
+        for(Reservation reservation : reservations) {
+            Date startDate = reservation.startDate().getTime();
+            Date endDate = reservation.endDate().getTime();
+            Calendar cal1 = Calendar.getInstance();
+            Calendar cal3 = Calendar.getInstance();           
+            cal1.setTime(startDate);           
+            cal3.setTime(endDate);          
+            boolean sameFromDate = cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) && cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR)
+                     && cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH);
+            boolean sameToDate = cal3.get(Calendar.YEAR) == cal4.get(Calendar.YEAR) && cal3.get(Calendar.DAY_OF_YEAR) == cal4.get(Calendar.DAY_OF_YEAR)
+                     && cal3.get(Calendar.MONTH) == cal4.get(Calendar.MONTH);
+            if((fromDate.after(startDate) || sameFromDate) && (toDate.before(endDate) || sameToDate)) {
+            
+            }
+        }
+    }//GEN-LAST:event_jButtonCheckMouseClicked
 
     /**
      * @param args the command line arguments
@@ -533,11 +711,14 @@ public class MainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAddRoom;
     private javax.swing.JButton jButtonCancel;
+    private javax.swing.JButton jButtonCancelCheck;
+    private javax.swing.JButton jButtonCheck;
     private javax.swing.JButton jButtonCheckRooms;
     private javax.swing.JButton jButtonConfirm;
     private javax.swing.JButton jButtonLogIn;
     private javax.swing.JButton jButtonLogOut;
     private javax.swing.JButton jButtonRemoveRoom;
+    private javax.swing.JButton jButtonRemoveUser;
     private javax.swing.JButton jButtonReservationAdd;
     private javax.swing.JButton jButtonReservationCancel;
     private javax.swing.JButton jButtonSignIn;
@@ -548,21 +729,26 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JList<String> jListCloudHolder;
+    private javax.swing.JPanel jPanelCheck;
     private javax.swing.JPanel jPanelEmployeeVerification;
     private javax.swing.JPanel jPanelListType;
     private javax.swing.JPanel jPanelLoggedInButtons;
     private javax.swing.JPanel jPanelLogin;
     private javax.swing.JPanel jPanelNameArea;
     private javax.swing.JPanel jPanelUserType;
+    private javax.swing.JPasswordField jPasswordField;
+    private javax.swing.JPasswordField jPasswordVerifyField;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextFieldEmail;
     private javax.swing.JTextField jTextFieldName;
-    private javax.swing.JTextField jTextFieldPassword;
-    private javax.swing.JTextField jTextFieldVerfiyStatus;
     private javax.swing.JToggleButton jToggleButtonReservationList;
     private javax.swing.JToggleButton jToggleButtonRooms;
     private javax.swing.JToggleButton jToggleButtonUsers;
+    private org.jdesktop.swingx.JXDatePicker jXDatePickerCheckFrom;
+    private org.jdesktop.swingx.JXDatePicker jXDatePickerCheckTo;
     private javax.swing.ButtonGroup userTypeGroup;
     // End of variables declaration//GEN-END:variables
 }

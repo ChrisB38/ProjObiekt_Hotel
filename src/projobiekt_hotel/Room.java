@@ -43,7 +43,7 @@ public class Room {
     public boolean hasGoodWindowView(){
     	return hasGoodWindowView;
     }
-    
+        
     void setNumber(long number){
     	this.roomNumber = number;
     }
