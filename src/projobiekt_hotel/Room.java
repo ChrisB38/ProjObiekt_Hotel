@@ -68,6 +68,26 @@ public class Room {
     	this.hasGoodWindowView = hasGoodWindowView;
     }
     
+    @Override
+    public String toString() {
+        String line = "";
+		
+	line += String.valueOf(this.number());
+	line += "," + String.valueOf(this.people());
+	line += "," + String.valueOf(this.price());
+        if(this.hasBath) {
+            line += "," + String.valueOf(" has bath");
+        }
+        if(this.hasKitchen) {
+            line += "," + String.valueOf(" has kitchen");
+        }
+	if(this.hasGoodWindowView) {
+            line += "," + String.valueOf(" has good view");
+        }	
+			
+	return line;
+    }
+    
     private long roomNumber;
     private int pepoleInRoom;
     private long reservationPrice;

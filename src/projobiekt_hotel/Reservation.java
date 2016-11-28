@@ -1,6 +1,9 @@
 package projobiekt_hotel;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class Reservation {
     
@@ -48,6 +51,21 @@ public class Reservation {
 //    public User client(){
 //    	
 //    }
+    
+    @Override
+    public String toString() {
+        String line = "";
+	DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+	Calendar startDate = this.startDate();
+	Calendar endDate = this.endDate();
+	line += String.valueOf(this.roomNumber());
+	line += "," + format.format(startDate.getTime());
+	line += "," + format.format(endDate.getTime());
+	line += "," + this.reservingUserMail();
+	line += "," + this.clientMail();
+				
+	return line;
+    }
     
     private int reservedRoomNumber;
     private Calendar reservationStart;

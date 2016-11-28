@@ -29,6 +29,16 @@ public class User {
 		return role;
 	}
 	
+        @Override
+        public String toString() {
+           String line = "";
+		
+           line += this.mailAddress();
+           line += "," + this.name();
+           line += "," + UserRole.toString(this.role());
+		
+           return line; 
+        }
 
 	private String mail;
 	private String hash;
