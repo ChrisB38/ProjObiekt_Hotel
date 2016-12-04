@@ -120,7 +120,7 @@ public class CsvReaderTests {
 		assertEquals(2016, firstReservation.startDate().get(Calendar.YEAR));
 		assertEquals(2014, secondReservation.endDate().get(Calendar.YEAR));
 		assertEquals("jan@kowalski.pl", firstReservation.clientMail());
-		assertEquals("pracownik@hotel.com", secondReservation.reservingUserMail());
+		assertEquals("pracownik@hotel.com", secondReservation.employeeMail());
 		assertEquals(14, secondReservation.roomNumber());
 	}
 	
@@ -140,7 +140,7 @@ public class CsvReaderTests {
 		assertEquals(8-1, reservation.endDate().get(Calendar.MONTH));
 		assertEquals(2016, reservation.endDate().get(Calendar.YEAR));
 		
-		assertEquals("a@b.com", reservation.reservingUserMail());
+		assertEquals("a@b.com", reservation.employeeMail());
 		assertEquals("foo@bar.com", reservation.clientMail());
 	}
 	

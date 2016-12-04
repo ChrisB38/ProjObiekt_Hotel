@@ -9,10 +9,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
-import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -61,7 +60,7 @@ public class MainFrame extends javax.swing.JFrame {
         jPasswordField = new javax.swing.JPasswordField();
         jButtonSignIn = new javax.swing.JButton();
         jButtonLogIn = new javax.swing.JButton();
-        jButtonCheckRooms = new javax.swing.JButton();
+        jButtonCheckReservations = new javax.swing.JButton();
         jPanelLoggedInButtons = new javax.swing.JPanel();
         jButtonReservationAdd = new javax.swing.JButton();
         jButtonReservationCancel = new javax.swing.JButton();
@@ -69,9 +68,7 @@ public class MainFrame extends javax.swing.JFrame {
         jButtonRemoveRoom = new javax.swing.JButton();
         jButtonRemoveUser = new javax.swing.JButton();
         jButtonLogOut = new javax.swing.JButton();
-        jButtonCheckReservations = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jListCloudHolder = new javax.swing.JList<>();
+        jButtonValidateReservations = new javax.swing.JButton();
         jPanelListType = new javax.swing.JPanel();
         jToggleButtonRooms = new javax.swing.JToggleButton();
         jToggleButtonUsers = new javax.swing.JToggleButton();
@@ -83,6 +80,9 @@ public class MainFrame extends javax.swing.JFrame {
         jXDatePickerCheckTo = new org.jdesktop.swingx.JXDatePicker();
         jButtonCheck = new javax.swing.JButton();
         jButtonCancelCheck = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableListHolder = new javax.swing.JTable();
+        jButtonClearTable = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hotel main window");
@@ -289,12 +289,12 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jButtonCheckRooms.setText("Check rooms");
-        jButtonCheckRooms.setToolTipText("");
-        jButtonCheckRooms.setActionCommand("Check room avalabity");
-        jButtonCheckRooms.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButtonCheckReservations.setText("Check reservations");
+        jButtonCheckReservations.setToolTipText("");
+        jButtonCheckReservations.setActionCommand("Check room avalabity");
+        jButtonCheckReservations.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButtonCheckRoomsMouseClicked(evt);
+                jButtonCheckReservationsMouseClicked(evt);
             }
         });
 
@@ -306,6 +306,11 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         jButtonReservationCancel.setText("Cancel reservaton");
+        jButtonReservationCancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonReservationCancelMouseClicked(evt);
+            }
+        });
 
         jButtonAddRoom.setText("Add room");
         jButtonAddRoom.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -315,9 +320,19 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         jButtonRemoveRoom.setText("Remove room");
+        jButtonRemoveRoom.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonRemoveRoomMouseClicked(evt);
+            }
+        });
 
         jButtonRemoveUser.setText("Remove user");
         jButtonRemoveUser.setToolTipText("");
+        jButtonRemoveUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonRemoveUserMouseClicked(evt);
+            }
+        });
 
         jButtonLogOut.setText("Log out");
         jButtonLogOut.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -326,7 +341,12 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jButtonCheckReservations.setText("Check reservations");
+        jButtonValidateReservations.setText("Validate reservations");
+        jButtonValidateReservations.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonValidateReservationsMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelLoggedInButtonsLayout = new javax.swing.GroupLayout(jPanelLoggedInButtons);
         jPanelLoggedInButtons.setLayout(jPanelLoggedInButtonsLayout);
@@ -338,7 +358,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonReservationAdd)
                 .addGap(18, 18, 18)
-                .addComponent(jButtonCheckReservations, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonValidateReservations, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonReservationCancel)
                 .addGap(18, 18, 18)
@@ -358,10 +378,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(jButtonRemoveRoom)
                 .addComponent(jButtonRemoveUser)
                 .addComponent(jButtonLogOut)
-                .addComponent(jButtonCheckReservations))
+                .addComponent(jButtonValidateReservations))
         );
-
-        jScrollPane1.setViewportView(jListCloudHolder);
 
         ListbuttonGroup.add(jToggleButtonRooms);
         jToggleButtonRooms.setText("Rooms");
@@ -392,9 +410,9 @@ public class MainFrame extends javax.swing.JFrame {
         jPanelListTypeLayout.setHorizontalGroup(
             jPanelListTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelListTypeLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(21, 21, 21)
                 .addComponent(jToggleButtonReservationList)
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
                 .addComponent(jToggleButtonRooms)
                 .addGap(30, 30, 30)
                 .addComponent(jToggleButtonUsers)
@@ -470,6 +488,23 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jTableListHolder.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane2.setViewportView(jTableListHolder);
+
+        jButtonClearTable.setText("Clear Table");
+        jButtonClearTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonClearTableMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -477,45 +512,49 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35)
+                        .addComponent(jPanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanelListType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jPanelCheck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonClearTable))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 744, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
+                        .addGap(55, 55, 55)
                         .addComponent(jButtonSignIn, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(27, 27, 27)
                         .addComponent(jButtonLogIn)
-                        .addGap(47, 47, 47)
-                        .addComponent(jButtonCheckRooms)))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanelLoggedInButtons, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanelListType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(jButtonCheckReservations)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelCheck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanelLoggedInButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButtonSignIn)
                         .addComponent(jButtonLogIn)
-                        .addComponent(jButtonCheckRooms, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jPanelLoggedInButtons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                        .addComponent(jButtonCheckReservations))
+                    .addComponent(jPanelLoggedInButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanelListType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanelCheck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jPanelCheck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonClearTable)))
                     .addComponent(jPanelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         pack();
@@ -562,18 +601,21 @@ public class MainFrame extends javax.swing.JFrame {
                         this.jButtonAddRoom.setVisible(true);
                         this.jButtonRemoveUser.setVisible(false);
                         this.jToggleButtonUsers.setVisible(false);
+                        this.jButtonValidateReservations.setVisible(true);
                     }
                     else if(loggedUser.role() == UserRole.MANAGER) {
                         this.jButtonRemoveRoom.setVisible(true);
                         this.jButtonAddRoom.setVisible(true);
                         this.jButtonRemoveUser.setVisible(true);
                         this.jToggleButtonUsers.setVisible(true);
+                        this.jButtonValidateReservations.setVisible(true);
                     }
                     else {
                         this.jButtonRemoveRoom.setVisible(false);
                         this.jButtonAddRoom.setVisible(false);
                         this.jButtonRemoveUser.setVisible(false);
                         this.jToggleButtonUsers.setVisible(false);
+                        this.jButtonValidateReservations.setVisible(false);
                     }
         }
         else {
@@ -595,7 +637,13 @@ public class MainFrame extends javax.swing.JFrame {
         this.jButtonLogIn.setVisible(true);
         this.jButtonSignIn.setVisible(true);
         this.userTypeGroup.clearSelection();
+        this.jTextFieldEmail.setText("");
+        this.jTextFieldName.setText("");
+        this.jPasswordField.setText("");
+        this.jPasswordVerifyField.setText("");
+        this.jPanelEmployeeVerification.setVisible(false);        
         this.signinMode = false;
+        this.userTypeGroup.clearSelection();
     }//GEN-LAST:event_jButtonCancelMouseClicked
 
     private void jButtonConfirmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonConfirmMouseClicked
@@ -650,25 +698,28 @@ public class MainFrame extends javax.swing.JFrame {
                     this.jPanelListType.setVisible(true);
                     this.jToggleButtonReservationList.setVisible(true);
                     this.jToggleButtonRooms.setVisible(true);
-                    this.jToggleButtonReservationList.setSelected(true);
                     if(loggedUser.role() == UserRole.EMPLOYEE) {
                         this.jButtonRemoveRoom.setVisible(false);
                         this.jButtonAddRoom.setVisible(true);
                         this.jButtonRemoveUser.setVisible(false);
                         this.jToggleButtonUsers.setVisible(false);
+                        this.jButtonValidateReservations.setVisible(true);
                     }
                     else if(loggedUser.role() == UserRole.MANAGER) {
                         this.jButtonRemoveRoom.setVisible(true);
                         this.jButtonAddRoom.setVisible(true);
                         this.jButtonRemoveUser.setVisible(true);
                         this.jToggleButtonUsers.setVisible(true);
+                        this.jButtonValidateReservations.setVisible(true);
                     }
                     else {
                         this.jButtonRemoveRoom.setVisible(false);
                         this.jButtonAddRoom.setVisible(false);
                         this.jButtonRemoveUser.setVisible(false);
                         this.jToggleButtonUsers.setVisible(false);
+                        this.jButtonValidateReservations.setVisible(false);
                     }
+                    this.jToggleButtonReservationList.setSelected(true);
                 }
                 catch(Exception ex) {
                     JOptionPane.showMessageDialog(rootPane, "Something went wrong. Terminating application", null,JOptionPane.ERROR_MESSAGE); 
@@ -717,17 +768,22 @@ public class MainFrame extends javax.swing.JFrame {
         this.jPanelLoggedInButtons.setVisible(false);
         this.jButtonLogIn.setVisible(true);
         this.jButtonSignIn.setVisible(true);
+        this.jPanelListType.setVisible(false);
+        this.jToggleButtonRooms.setVisible(false);
+        this.jToggleButtonUsers.setVisible(false);
+        this.jToggleButtonReservationList.setVisible(false);
         loggedUser = null;
     }//GEN-LAST:event_jButtonLogOutMouseClicked
 
-    private void jButtonCheckRoomsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCheckRoomsMouseClicked
+    private void jButtonCheckReservationsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCheckReservationsMouseClicked
         // TODO add your handling code here:
         this.jPanelListType.setVisible(true);
-        this.jToggleButtonReservationList.setVisible(false);
+        this.jToggleButtonRooms.setVisible(false);
         this.jToggleButtonUsers.setVisible(false);
-        this.jToggleButtonRooms.setSelected(true);
+        this.jToggleButtonReservationList.setSelected(true);
+        this.jTableListHolder.setModel(new DefaultTableModel());
         this.jPanelCheck.setVisible(true);
-    }//GEN-LAST:event_jButtonCheckRoomsMouseClicked
+    }//GEN-LAST:event_jButtonCheckReservationsMouseClicked
 
     private void jButtonCheckMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCheckMouseClicked
         // TODO add your handling code here:
@@ -737,30 +793,56 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Incorrect user imput. Please enter the check dates again.", null,JOptionPane.ERROR_MESSAGE); 
             return;
         }
-        ArrayList<Reservation> reservations = lists.reservations();
-        Calendar cal2 = Calendar.getInstance();
-        Calendar cal4 = Calendar.getInstance();
-        cal2.setTime(fromDate);
-        cal4.setTime(toDate);
-        for(Reservation reservation : reservations) {
-            Date startDate = reservation.startDate().getTime();
-            Date endDate = reservation.endDate().getTime();
-            Calendar cal1 = Calendar.getInstance();
-            Calendar cal3 = Calendar.getInstance();           
-            cal1.setTime(startDate);           
-            cal3.setTime(endDate);          
-            boolean sameFromDate = cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) && cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR)
-                     && cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH);
-            boolean sameToDate = cal3.get(Calendar.YEAR) == cal4.get(Calendar.YEAR) && cal3.get(Calendar.DAY_OF_YEAR) == cal4.get(Calendar.DAY_OF_YEAR)
-                     && cal3.get(Calendar.MONTH) == cal4.get(Calendar.MONTH);
-            if((fromDate.after(startDate) || sameFromDate) && (toDate.before(endDate) || sameToDate)) {
-            
-            }
+        DefaultTableModel model = new DefaultTableModel(){
+
+                @Override
+                 public boolean isCellEditable(int row, int column) {
+                    //all cells false
+                    return false;
+                }
+        };
+        if(loggedUser == null || loggedUser.role() == UserRole.GUEST) {
+            model.addColumn("Room");
+            model.addColumn("Reservation from");
+            model.addColumn("Reservation to");
+                
         }
+        else {
+            model.addColumn("Room");
+            model.addColumn("Reservation from");
+            model.addColumn("Reservation to");
+            model.addColumn("Employee email");
+            model.addColumn("Guest email");
+        }
+        ArrayList<Reservation> reservations = lists.CheckIfDatesContainReservation(fromDate, toDate);
+        if(reservations.isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "No reservations found in entered date period", null,JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        for(Reservation reservation : reservations) {
+                    String startDateStr = format.format(reservation.startDate().getTime());
+                    String endDateStr = format.format(reservation.endDate().getTime());
+                    if(loggedUser != null && (loggedUser.role() == UserRole.EMPLOYEE || loggedUser.role() == UserRole.MANAGER) ) 
+                    {
+                        String employeeEmail;
+                        if(reservation.employeeMail().equals("verify")) {
+                            employeeEmail = "";
+                        }
+                        else {
+                            employeeEmail = reservation.employeeMail();
+                        }
+                        model.addRow(new String[] {String.valueOf(reservation.roomNumber()),startDateStr,endDateStr,employeeEmail,reservation.clientMail()});
+                    }
+                    else {
+                        model.addRow(new String[] {String.valueOf(reservation.roomNumber()),startDateStr,endDateStr});
+                    }                    
+        }
+        this.jTableListHolder.setModel(model);
         this.jPanelListType.setVisible(false);
-        this.jToggleButtonReservationList.setVisible(true);
+        this.jToggleButtonRooms.setVisible(true);
         this.jToggleButtonUsers.setVisible(true);
-        this.jToggleButtonRooms.setSelected(false);
+        this.jToggleButtonReservationList.setSelected(false);
         this.jXDatePickerCheckFrom.setDate(null);
         this.jXDatePickerCheckTo.setDate(null);
         this.jPanelCheck.setVisible(false);
@@ -782,24 +864,96 @@ public class MainFrame extends javax.swing.JFrame {
         this.jXDatePickerCheckFrom.setDate(null);
         this.jXDatePickerCheckTo.setDate(null);
         this.jPanelCheck.setVisible(false);
+        this.jTableListHolder.setModel(new DefaultTableModel());
     }//GEN-LAST:event_jButtonCancelCheckMouseClicked
 
     private void jToggleButtonReservationListItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jToggleButtonReservationListItemStateChanged
         // TODO add your handling code here:
-        DefaultListModel<String>  model = new DefaultListModel();
+            DefaultTableModel model = new DefaultTableModel() {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    //all cells false
+                    return false;
+                }
+            };
+            if(loggedUser == null || loggedUser.role() == UserRole.GUEST) {
+                model.addColumn("Room");
+                model.addColumn("Reservation from");
+                model.addColumn("Reservation to");  
+            }
+            else {
+                model.addColumn("Room");
+                model.addColumn("Reservation from");
+                model.addColumn("Reservation to");
+                model.addColumn("Employee email");
+                model.addColumn("Guest email");
+            }
+            DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         for(Reservation reservation : lists.reservations()) {
-            model.addElement(reservation.toString());
+            String startDate = format.format(reservation.startDate().getTime());
+            String endDate = format.format(reservation.endDate().getTime());
+            if( loggedUser != null && loggedUser.role() == UserRole.GUEST && reservation.clientMail().equals(loggedUser.mailAddress())) {
+                   model.addRow(new String[] {String.valueOf(reservation.roomNumber()),startDate,endDate});
+            }
+            else if(loggedUser != null && (loggedUser.role() == UserRole.EMPLOYEE || loggedUser.role() == UserRole.MANAGER) ) 
+            {
+                String employeeEmail;
+                if(reservation.employeeMail().equals("verify")) {
+                    employeeEmail = "";
+                }
+                else {
+                    employeeEmail = reservation.employeeMail();
+                }
+                model.addRow(new String[] {String.valueOf(reservation.roomNumber()),startDate,endDate,employeeEmail,reservation.clientMail()});
+            }
         }
-        this.jListCloudHolder.setModel(model);
+       this.jTableListHolder.setModel(model);
     }//GEN-LAST:event_jToggleButtonReservationListItemStateChanged
 
     private void jToggleButtonRoomsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jToggleButtonRoomsItemStateChanged
         // TODO add your handling code here:
-        DefaultListModel<String>  model = new DefaultListModel();
+        DefaultTableModel model = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                //all cells false
+                return false;
+            }
+        };
+        model.addColumn("Room number");
+        model.addColumn("Max capacity");
+        model.addColumn("Base reservation price");
+        model.addColumn("Has bathroom");
+        model.addColumn("Has kitchen");
+        model.addColumn("Has good view");
         for(Room room : lists.rooms()) {
-            model.addElement(room.toString());
+            
+           String bathStatus; 
+           if(room.hasBath()) {
+               bathStatus = "yes";
+           } 
+           else {
+               bathStatus = "no";
+           }
+           
+           String viewStatus;
+           if(room.hasGoodWindowView()) {
+               viewStatus = "yes";
+           }
+           else {
+               viewStatus = "no";
+           }
+           
+           String kitchenStatus;
+           if(room.hasKitchen()) {
+               kitchenStatus = "yes";
+           }
+           else {
+               kitchenStatus = "no";
+           }
+           
+           model.addRow(new String[]{String.valueOf(room.number()),String.valueOf(room.people()),String.valueOf(room.price()),bathStatus,kitchenStatus,viewStatus});
         }
-        this.jListCloudHolder.setModel(model);
+       this.jTableListHolder.setModel(model);
     }//GEN-LAST:event_jToggleButtonRoomsItemStateChanged
 
     private void jButtonAddRoomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAddRoomMouseClicked
@@ -811,12 +965,194 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jToggleButtonUsersItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jToggleButtonUsersItemStateChanged
         // TODO add your handling code here:
-        DefaultListModel<String>  model = new DefaultListModel();
-        for(User users : lists.users()) {
-            model.addElement(users.toString());
+         DefaultTableModel model = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                //all cells false
+                return false;
+            }
+        };
+         
+         model.addColumn("User name");
+         model.addColumn("User email");
+         model.addColumn("User role");
+
+        for(User user : lists.users()) {
+            String userName = user.name();
+            String userEmail = user.mailAddress();
+            String userRole = user.role().toString();
+            model.addRow(new String [] {userName,userEmail,userRole});
         }
-        this.jListCloudHolder.setModel(model);
+       this.jTableListHolder.setModel(model);
     }//GEN-LAST:event_jToggleButtonUsersItemStateChanged
+
+    private void jButtonValidateReservationsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonValidateReservationsMouseClicked
+        // TODO add your handling code here:
+        if(!this.jToggleButtonReservationList.isSelected()) {
+            return;
+        }
+        if (this.jTableListHolder.getSelectedRowCount() == 0 ) {
+            JOptionPane.showMessageDialog(rootPane, "Select reservations to validate", null,JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        
+        int [] selectedRowIndex = this.jTableListHolder.getSelectedRows();
+        boolean reservationsModified = false;
+        for(int index : selectedRowIndex) {
+            String selectedRoom = this.jTableListHolder.getValueAt(index,0).toString();
+            String selectedDateFrom = this.jTableListHolder.getValueAt(index,1).toString();
+            String selectedDateTo = this.jTableListHolder.getValueAt(index,2).toString();
+            String selectedEmployeeEmail = this.jTableListHolder.getValueAt(index,3).toString();
+            String selectedClientEmail = this.jTableListHolder.getValueAt(index,4).toString();
+            if(!selectedEmployeeEmail.isEmpty()) {
+                continue;
+            }
+            Reservation foundReservation = MainFrame.lists.findReservation(selectedRoom, selectedDateFrom, selectedDateTo, "verify", selectedClientEmail);
+            if(foundReservation != null) {
+                int foundIndex = lists.reservations().indexOf(foundReservation);
+                foundReservation.setEmployeeEmail(loggedUser.mailAddress());
+                this.jTableListHolder.setValueAt(foundReservation.employeeMail(),index,3);
+                lists.reservations().set(foundIndex, foundReservation);
+                reservationsModified = true;
+            }       
+        }
+        
+        if(reservationsModified) {
+            boolean result = lists.saveLists();
+            if(result) {
+                JOptionPane.showMessageDialog(rootPane, "Reservations have been validated", null,JOptionPane.INFORMATION_MESSAGE);
+            }   
+        }
+        else {
+            JOptionPane.showMessageDialog(rootPane, "No validations have been required", null,JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonValidateReservationsMouseClicked
+
+    private void jButtonClearTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonClearTableMouseClicked
+        // TODO add your handling code here:
+        this.jTableListHolder.setModel(new DefaultTableModel());
+    }//GEN-LAST:event_jButtonClearTableMouseClicked
+
+    private void jButtonReservationCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonReservationCancelMouseClicked
+        // TODO add your handling code here:
+        if(!this.jToggleButtonReservationList.isSelected()) {
+            return;
+        }
+        
+        if (this.jTableListHolder.getSelectedRowCount() == 0 || this.jTableListHolder.getSelectedRowCount() > 1) {
+            JOptionPane.showMessageDialog(rootPane, "You can only cancel one reservation at a time", null,JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        
+        int index = this.jTableListHolder.getSelectedRow();
+        
+        String selectedRoom = this.jTableListHolder.getValueAt(index,0).toString();
+        String selectedDateFrom = this.jTableListHolder.getValueAt(index,1).toString();
+        String selectedDateTo = this.jTableListHolder.getValueAt(index,2).toString();
+        
+        if(loggedUser.role() == UserRole.GUEST) {
+            Reservation canceledReservation = lists.findReservation(selectedRoom, selectedDateTo, selectedDateTo, "", loggedUser.mailAddress());
+            if(canceledReservation != null) {
+                int userChoice = JOptionPane.showConfirmDialog(rootPane, "Do you want to cancel this reservation?","Cancel Reservation",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE);
+                if (userChoice == JOptionPane.YES_OPTION) {
+                    lists.reservations().remove(canceledReservation);
+                    this.jTableListHolder.remove(index);
+                    boolean result = lists.saveLists();
+                    if(result) {
+                        JOptionPane.showMessageDialog(rootPane, "The selected reservation has been canceled", null,JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }
+            }
+        }
+        else {
+            String selectedEmployeeEmail = this.jTableListHolder.getValueAt(index,3).toString();
+            String selectedClientEmail = this.jTableListHolder.getValueAt(index,4).toString();
+            if(selectedEmployeeEmail.isEmpty()) {
+                selectedEmployeeEmail = "verify";
+            }
+            Reservation canceledReservation = MainFrame.lists.findReservation(selectedRoom, selectedDateFrom, selectedDateTo, selectedEmployeeEmail, selectedClientEmail);
+            if(canceledReservation != null) {
+                int userChoice = JOptionPane.showConfirmDialog(rootPane, "Do you want to cancel this reservation?","Cancel Reservation",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE);
+                if (userChoice == JOptionPane.YES_OPTION) {
+                    this.jTableListHolder.remove(index);
+                    lists.reservations().remove(canceledReservation);
+                    boolean result = lists.saveLists();
+                    if(result) {
+                        JOptionPane.showMessageDialog(rootPane, "The selected reservation has been canceled", null,JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }
+            }  
+        }
+    }//GEN-LAST:event_jButtonReservationCancelMouseClicked
+
+    private void jButtonRemoveUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRemoveUserMouseClicked
+        // TODO add your handling code here:
+        if(!this.jToggleButtonUsers.isSelected()) {
+            return;
+        }
+        
+        if (this.jTableListHolder.getSelectedRowCount() == 0 || this.jTableListHolder.getSelectedRowCount() > 1) {
+            JOptionPane.showMessageDialog(rootPane, "You can only remove one user at a time", null,JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        
+        int index = this.jTableListHolder.getSelectedRow();
+        
+        String selectedUserEmail = this.jTableListHolder.getValueAt(index,1).toString();
+        try {
+            User deleteUser = UsersManager.getUserByMail(selectedUserEmail);
+            if(deleteUser.mailAddress().equals(loggedUser.mailAddress())) {
+                JOptionPane.showMessageDialog(rootPane, "Can't remove currently logged User", null,JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+            
+                int userChoice = JOptionPane.showConfirmDialog(rootPane, "Do you want to remove this user?","User removal",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE);
+                if (userChoice == JOptionPane.YES_OPTION) {
+                    this.jTableListHolder.remove(index);
+                    lists.users().remove(deleteUser);
+                    boolean result = lists.saveLists();
+                    if(result) {
+                        JOptionPane.showMessageDialog(rootPane, "The selected user has been removed", null,JOptionPane.INFORMATION_MESSAGE);
+                        this.jTableListHolder.repaint();
+                    }
+                }
+        }
+        catch(Exception ex) {
+            JOptionPane.showMessageDialog(rootPane, "An error has occured during the removal of the selected user", null,JOptionPane.INFORMATION_MESSAGE);
+            System.exit(1);
+        }
+    }//GEN-LAST:event_jButtonRemoveUserMouseClicked
+
+    private void jButtonRemoveRoomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRemoveRoomMouseClicked
+        // TODO add your handling code here:
+        if(!this.jToggleButtonRooms.isSelected()) {
+            return;
+        }
+        
+        if (this.jTableListHolder.getSelectedRowCount() == 0 || this.jTableListHolder.getSelectedRowCount() > 1) {
+            JOptionPane.showMessageDialog(rootPane, "You can only remove one user at a time", null,JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        int index = this.jTableListHolder.getSelectedRow();
+        
+        String selectedRoom = this.jTableListHolder.getValueAt(index,0).toString();
+        
+        Room removedRoom = lists.findRoom(selectedRoom);
+        if(removedRoom != null) {
+                int userChoice = JOptionPane.showConfirmDialog(rootPane, "Do you want to remove this room?","Remove room",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE);
+                if (userChoice == JOptionPane.YES_OPTION) {
+                    this.jTableListHolder.remove(index);
+                    lists.rooms().remove(removedRoom);
+                    boolean result = lists.saveLists();
+                    if(result) {
+                        JOptionPane.showMessageDialog(rootPane, "The selected room has been removed", null,JOptionPane.INFORMATION_MESSAGE);
+                        this.jTableListHolder.repaint();
+                    }
+                }
+        }
+       
+    }//GEN-LAST:event_jButtonRemoveRoomMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup ListbuttonGroup;
@@ -825,7 +1161,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCancelCheck;
     private javax.swing.JButton jButtonCheck;
     private javax.swing.JButton jButtonCheckReservations;
-    private javax.swing.JButton jButtonCheckRooms;
+    private javax.swing.JButton jButtonClearTable;
     private javax.swing.JButton jButtonConfirm;
     private javax.swing.JButton jButtonLogIn;
     private javax.swing.JButton jButtonLogOut;
@@ -834,6 +1170,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButtonReservationAdd;
     private javax.swing.JButton jButtonReservationCancel;
     private javax.swing.JButton jButtonSignIn;
+    private javax.swing.JButton jButtonValidateReservations;
     private javax.swing.JCheckBox jCheckBoxEmployee;
     private javax.swing.JCheckBox jCheckBoxGuest;
     private javax.swing.JCheckBox jCheckBoxManager;
@@ -843,7 +1180,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JList<String> jListCloudHolder;
     private javax.swing.JPanel jPanelCheck;
     private javax.swing.JPanel jPanelEmployeeVerification;
     private javax.swing.JPanel jPanelListType;
@@ -853,7 +1189,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelUserType;
     private javax.swing.JPasswordField jPasswordField;
     private javax.swing.JPasswordField jPasswordVerifyField;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTableListHolder;
     private javax.swing.JTextField jTextFieldEmail;
     private javax.swing.JTextField jTextFieldName;
     private javax.swing.JToggleButton jToggleButtonReservationList;

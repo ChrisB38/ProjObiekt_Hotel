@@ -7,16 +7,16 @@ import java.util.Locale;
 
 public class Reservation {
     
-    public Reservation(int reservedRoomNumber, Calendar reservationStart, Calendar reservationEnd,
-    		String reservingUserMail, String clientMail) {
+    public Reservation(long reservedRoomNumber, Calendar reservationStart, Calendar reservationEnd,
+    		String employeeMail, String clientMail) {
         this.reservedRoomNumber = reservedRoomNumber;
         this.reservationStart = reservationStart;
         this.reservationEnd = reservationEnd;
-        this.reservingUserMail = reservingUserMail;
+        this.employeeMail = employeeMail;
         this.clientMail = clientMail;
     }
     
-    public int roomNumber(){
+    public long roomNumber(){
     	return reservedRoomNumber;
     }
     
@@ -28,8 +28,8 @@ public class Reservation {
     	return reservationEnd;
     }
     
-    public String reservingUserMail(){
-    	return reservingUserMail;
+    public String employeeMail(){
+    	return employeeMail;
     }
     
     public String clientMail(){
@@ -43,6 +43,10 @@ public class Reservation {
     public void setEndDate(Calendar reservationEnd){
     	this.reservationEnd = reservationEnd;
     }
+    
+    public void setEmployeeEmail(String employeeEmail) {
+        this.employeeMail = employeeEmail;
+    } 
     
 //    public User reservingUser(){
 //    	// TODO to implement with parameter cloud
@@ -61,16 +65,19 @@ public class Reservation {
 	line += String.valueOf(this.roomNumber());
 	line += "," + format.format(startDate.getTime());
 	line += "," + format.format(endDate.getTime());
-	line += "," + this.reservingUserMail();
+        if(MainFrame.loggedUser == null || MainFrame.loggedUser.role() == UserRole.GUEST) {
+            return line;
+        }
+	line += "," + this.employeeMail();
 	line += "," + this.clientMail();
 				
 	return line;
     }
     
-    private int reservedRoomNumber;
+    private long reservedRoomNumber;
     private Calendar reservationStart;
     private Calendar reservationEnd;
-    private String reservingUserMail;
+    private String employeeMail;
     private String clientMail;
     
 }

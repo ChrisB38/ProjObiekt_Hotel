@@ -96,7 +96,7 @@ public class CsvWriter {
 		line += String.valueOf(reservation.roomNumber());
 		line += "," + format.format(startDate.getTime());
 		line += "," + format.format(endDate.getTime());
-		line += "," + reservation.reservingUserMail();
+		line += "," + reservation.employeeMail();
 		line += "," + reservation.clientMail();
 				
 		return line;

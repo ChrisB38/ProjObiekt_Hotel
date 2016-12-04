@@ -2,8 +2,6 @@ package tests;
 
 import static org.junit.Assert.*;
 
-import java.math.BigInteger;
-import java.security.MessageDigest;
 import java.util.ArrayList;
 
 import org.junit.Test;

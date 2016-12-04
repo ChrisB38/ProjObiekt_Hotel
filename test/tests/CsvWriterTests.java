@@ -130,7 +130,7 @@ public class CsvWriterTests {
 		
 		assertEquals(14, firstReadReservation.roomNumber());
 		assertEquals(2014, firstReadReservation.startDate().get(Calendar.YEAR));
-		assertEquals("pracownik@hotel.com", firstReadReservation.reservingUserMail());
+		assertEquals("pracownik@hotel.com", firstReadReservation.employeeMail());
 		assertEquals(251, secondReadReservation.roomNumber());		
 		assertEquals("jan@kowalski.net", secondReadReservation.clientMail());
 		assertEquals(13, secondReadReservation.startDate().get(Calendar.DAY_OF_MONTH));
