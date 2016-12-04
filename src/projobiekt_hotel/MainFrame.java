@@ -668,7 +668,7 @@ public class MainFrame extends javax.swing.JFrame {
                         this.jPanelLogin.setVisible(true); 
                         return;
                     } 
-                }                
+                } 
                 boolean result = UsersManager.register(jTextFieldEmail.getText(), Arrays.toString(jPasswordField.getPassword()),jTextFieldName.getText(),userType);
                 if(!result) {
                     JOptionPane.showMessageDialog(rootPane, "Couldn't register user", null,JOptionPane.INFORMATION_MESSAGE);
@@ -772,6 +772,7 @@ public class MainFrame extends javax.swing.JFrame {
         this.jToggleButtonRooms.setVisible(false);
         this.jToggleButtonUsers.setVisible(false);
         this.jToggleButtonReservationList.setVisible(false);
+        this.jTableListHolder.setModel(new DefaultTableModel());
         loggedUser = null;
     }//GEN-LAST:event_jButtonLogOutMouseClicked
 

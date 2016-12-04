@@ -38,8 +38,8 @@ public class UsersManager {
 	public static boolean correctSecretPassword(String password) throws Exception {
 		return hash(password).equals("ed86f1f642b7d5ea479523c8e879be29");
 	}
-	
-
+        
+ 
 	public static User getUserByMail(String mail) throws Exception {
 		ListsCloud cloud = ListsCloud.getInstance();
 		ArrayList<User> users = cloud.users();
